@@ -749,8 +749,8 @@ createArchive() {
 # Create a Tar ball
 createOpenJDKTarArchive()
 {
-  local jdkTargetPath=$(getJdkArchivePath)
-  local jreTargetPath=$(getJreArchivePath)
+  local jdkTargetPath="jdk"
+  local jreTargetPath="jre"
   local testImageTargetPath=$(getTestImageArchivePath)
   local debugImageTargetPath=$(getDebugImageArchivePath)
 
