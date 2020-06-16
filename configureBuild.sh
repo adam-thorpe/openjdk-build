@@ -127,8 +127,8 @@ setVariablesForConfigure() {
     local jre_path="j2re-image"
     case "${BUILD_CONFIG[OS_KERNEL_NAME]}" in
     "darwin")
-      local jdk_path="j2sdk-bundle/jdk*.jdk"
-      local jre_path="j2re-bundle/jre*.jre"
+      BUILD_CONFIG[JDK_BUNDLE_PATH]="j2sdk-bundle/jdk*.jdk"
+      BUILD_CONFIG[JRE_BUNDLE_PATH]="j2re-bundle/jre*.jre"
     ;;
     esac
   else
@@ -136,8 +136,8 @@ setVariablesForConfigure() {
     local jre_path="jre"
     case "${BUILD_CONFIG[OS_KERNEL_NAME]}" in
     "darwin")
-      local jdk_path="jdk-bundle/jdk-*.jdk"
-      local jre_path="jre-bundle/jre-*.jre"
+      BUILD_CONFIG[JDK_BUNDLE_PATH]="jdk-bundle/jdk-*.jdk"
+      BUILD_CONFIG[JRE_BUNDLE_PATH]="jre-bundle/jre-*.jre"
     ;;
     esac
   fi

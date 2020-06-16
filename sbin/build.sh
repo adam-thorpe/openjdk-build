@@ -749,8 +749,8 @@ createArchive() {
 # Create a Tar ball
 createOpenJDKTarArchive()
 {
-  local jdkTargetPath="jdk"
-  local jreTargetPath="jre"
+  local jdkTargetPath=$(getJdkArchivePath)
+  local jreTargetPath=$(getJreArchivePath)
   local testImageTargetPath=$(getTestImageArchivePath)
   local debugImageTargetPath=$(getDebugImageArchivePath)
 
@@ -773,6 +773,14 @@ createOpenJDKTarArchive()
     createArchive "${debugImageTargetPath}" "${debugImageName}"
   fi
   createArchive "${jdkTargetPath}" "${BUILD_CONFIG[TARGET_FILE_NAME]}"
+
+  # If mac, also create bundle archives
+  if [[ "${BUILD_CONFIG[OS_KERNEL_NAME]}" == "darwin" ]]; then
+    local jdkBundleName=$(echo "${BUILD_CONFIG[TARGET_FILE_NAME]}" | sed 's/-jdk/-jdk-bundle/')
+    local jreBundleName=$(echo "${BUILD_CONFIG[TARGET_FILE_NAME]}" | sed 's/-jdk/-jre-bundle/')
+    createArchive "${BUILD_CONFIG[JDK_BUNDLE_PATH]}" "${jdkBundleName}"
+    createArchive "${BUILD_CONFIG[JRE_BUNDLE_PATH]}" "${jreBundleName}"
+  fi
 }
 
 # Echo success
